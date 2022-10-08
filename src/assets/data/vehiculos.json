@@ -1,0 +1,36 @@
+{
+    "data": [{
+            "id": "1",
+            "placa": "BMVA12",
+            "capacidad": 156,
+            "tipoUnidad": "Ciclomotor",
+            "foto": "./imagenes/vehiculos/nissan.jpg",
+            "fotoSoat": "",
+            "fechaVencimientoSoat": "2025-09-19",
+            "fechaVencimientoRevisionTecnica": "2025-09-19",
+            "fechaRevisionTecnica": "2025-09-19"
+        },
+        {
+            "id": "2",
+            "placa": "BMVA12",
+            "capacidad": 156,
+            "tipoUnidad": "Ciclomotor",
+            "foto": "./imagenes/vehiculos/susuki.jpg",
+            "fotoSoat": "",
+            "fechaVencimientoSoat": "2025-09-19",
+            "fechaVencimientoRevisionTecnica": "2025-09-19",
+            "fechaRevisionTecnica": "2025-09-19"
+        },
+        {
+            "id": "3",
+            "placa": "BMVA12",
+            "capacidad": 156,
+            "tipoUnidad": "Ciclomotor",
+            "foto": "./imagenes/vehiculos/susuki.jpg",
+            "fotoSoat": "",
+            "fechaVencimientoSoat": "2025-09-19",
+            "fechaVencimientoRevisionTecnica": "2025-09-19",
+            "fechaRevisionTecnica": "2025-09-19"
+        }
+    ]
+}
