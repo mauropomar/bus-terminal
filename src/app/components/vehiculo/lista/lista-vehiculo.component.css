@@ -1,0 +1,62 @@
+.container {
+    padding: 2rem 0rem;
+}
+
+h4 {
+    margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+    td,
+    th {
+        vertical-align: middle;
+    }
+}
+
+button {
+    margin-left: 10px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-center,
+th {
+    text-align: center;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #4779ab;
+    background-color: #4779ab;
+    color: white
+}
+
+.img-bus {
+    border-radius: 45%;
+}
+
+.button-nuevo {
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #4779ab;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.button-nuevo:hover {
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #4779ab;
+    margin-bottom: 10px;
+    border: 2px solid black;
+}

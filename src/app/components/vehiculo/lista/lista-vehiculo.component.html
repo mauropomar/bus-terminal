@@ -1,1 +1,33 @@
-<p>lista-vehiculo works!</p>
+<div class="container">
+    <h2>Listado de Vehiculos</h2>
+    <button class="button-nuevo" type="button">Nuevo Vehículo</button>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Capacidad</th>
+                        <th scope="col">Tipo de Unidad</th>
+                        <th scope="col">Fecha Vencimiento Soat</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let fila of listado">
+                        <td width="70"><img class="img-bus" src="./assets/images/vehiculos/{{fila.foto}}" width="50" height="50"></td>
+                        <td>{{fila.placa}}</td>
+                        <td class="align-right">{{fila.capacidad}} lts</td>
+                        <td>{{fila.tipoUnidad}}</td>
+                        <td class="align-center">{{fila.fechaVencimientoSoat | date: 'dd/MM/yyyy'}}</td>
+                        <td class="align-center">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+                            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
