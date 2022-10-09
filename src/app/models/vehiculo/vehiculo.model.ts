@@ -7,6 +7,6 @@ export interface VehiculoModel{
     foto?:string;
     fechaVencimientoSoat?:string;
     fechaVencimientoRevisionTecnica?:string;
-    fechaRevisionTecnica?:string;
     fotoSoat?:string;
+    fotoRevisionTecnica?:string;
 }

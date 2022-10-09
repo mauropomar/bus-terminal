@@ -28,11 +28,11 @@ export class FormVehiculoComponent implements OnInit {
       placa: ['', Validators.required],
       capacidad: ['', [Validators.required, Validators.email]],
       tipoUnidad: ['', Validators.required],
-      foto: [''],
       proveedor: ['', Validators.required],
       fechaVencimientoSoap: ['', Validators.required],
       fechaVencimientoRevisionTecnica: ['', Validators.required],
-      fechaRevisionTecnica: ['', Validators.required],
+      foto: [''],
+      fotoRevisionTecnica: [''],
       fotoSoat: ['']
     });
   }
