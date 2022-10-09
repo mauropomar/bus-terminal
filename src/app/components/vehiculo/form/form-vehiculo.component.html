@@ -1,1 +1,40 @@
-<p>form-vehiculo works!</p>
+<div class="container">
+    <div class="col-md-4">
+        <h2 class="text-center">{{titulo}}</h2>
+        <form class="login-form" [formGroup]="formV" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="text-uppercase">Placa *</label>
+                <input type="text" class="form-control" formControlName="placa">
+            </div>
+            <div class="form-group">
+                <label class="text-uppercase">Capacidad *</label>
+                <input type="text" class="form-control" formControlName="capacidad">
+            </div>
+            <div class="form-group">
+                <label class="text-uppercase">Tipo de Unidad</label>
+                <select class="form-control" formControlName="tipoUnidad">
+                    <option>Ciclomotor</option>
+                    <option>Autocar</option>
+                    <option>SITREN</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="text-uppercase">Proveedor</label>
+                <input type="text" class="form-control" formControlName="proveedor">
+            </div>
+            <div class="form-group">
+                <label class="text-uppercase">Fecha de Vencimiento Soap</label>
+                <div class="input-group">
+                    <input class="form-control" formControlName="fechaVencimientoSoap" ngbDatepicker #d="ngbDatepicker" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="d.toggle()"></button>
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="!formV.valid" type="submit" class="btn btn-danger float-right">Cancelar</button>
+            <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right">Aceptar</button>
+            <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right">Agregar</button>
+        </form>
+    </div>
+
+</div>
