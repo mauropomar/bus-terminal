@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let fila of listado">
-                        <td width="70"><img class="img-bus" src="{{fila.foto}}" width="50" height="50"></td>
+                        <td width="70"><img class="img-bus" [src]="fila.foto" width="50" height="50"></td>
                         <td>{{fila.placa}}</td>
                         <td class="align-right">{{fila.capacidad}} lts</td>
                         <td>{{fila.tipoUnidad}}</td>
