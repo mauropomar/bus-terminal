@@ -5,7 +5,7 @@ export interface VehiculoModel{
     tipoUnidad:string;
     proveedor:string;
     foto?:string;
-    fechaVencimientoSoap?:string;
+    fechaVencimientoSoat?:string;
     fechaVencimientoRevisionTecnica?:string;
     fotoSoat?:string;
     fotoRevisionTecnica?:string;
