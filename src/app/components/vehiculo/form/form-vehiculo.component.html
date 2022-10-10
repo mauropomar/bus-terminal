@@ -3,7 +3,11 @@
         <h2 class="text-center">{{titulo}}</h2>
         <div class="row">
             <div class="col-md-4">
-                Mauro
+                <app-imagen-archivo titulo="Foto de Vehiculo" [imagenUrl]="imagenUrlFoto" (cargarImagen)="cargarImagenFotoVehiculo($event)"></app-imagen-archivo>
+                <hr>
+                <app-imagen-archivo titulo="Foto de Revisión Técnica" [imagenUrl]="imagenUrlFotoRevTec" (cargarImagen)="cargarImagenFotoRevisionTecnica($event)"></app-imagen-archivo>
+                <hr>
+                <app-imagen-archivo titulo="Foto Soap" [imagenUrl]="imagenUrlFotoSoat" (cargarImagen)="cargarImagenFotoSoat($event)"></app-imagen-archivo>
             </div>
             <div class="col-md-8">
                 <form class="login-form" [formGroup]="formV" (ngSubmit)="onSubmit()">

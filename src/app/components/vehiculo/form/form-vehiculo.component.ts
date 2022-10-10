@@ -17,10 +17,12 @@ export class FormVehiculoComponent implements OnInit {
   formV:any;
   submitted = false;
   titulo = 'Crear un Vehiculo';
-
+  imagenUrlFoto = './../../../assets/images/no-image.png';
+  imagenUrlFotoRevTec = './../../../assets/images/no-image.png';
+  imagenUrlFotoSoat = './../../../assets/images/no-image.png';
   minDate = { day: 9, month: 4, year: 2022 };
   model: NgbDateStruct;
-  
+
   constructor(private formBuilder: FormBuilder, private readonly calendar: NgbCalendar) { }
 
   ngOnInit(): void {
@@ -39,11 +41,23 @@ export class FormVehiculoComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
- 
+
     if (this.formV.invalid) {
         return;
     }
 
+  }
+
+  cargarImagenFotoVehiculo(event: string){
+    this.imagenUrlFoto = event;
+  }
+
+  cargarImagenFotoRevisionTecnica(event: string){
+    this.imagenUrlFotoRevTec = event;
+  }
+
+  cargarImagenFotoSoat(event: string){
+    this.imagenUrlFotoSoat = event;
   }
 
 }
