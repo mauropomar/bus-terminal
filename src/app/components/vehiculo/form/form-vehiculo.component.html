@@ -10,6 +10,9 @@
                 <app-imagen-archivo titulo="Foto Soap" idImagen="3" [imagenUrl]="imagenUrlFotoSoat" (cargarImagen)="cargarImagenFotoSoat($event)"></app-imagen-archivo>
             </div>
             <div class="col-md-8">
+                <div *ngIf="showToast" class="alert alert-dismissible alert-success">
+                    <strong>{{titleToast}}!!!</strong><br><a>{{bodyToast}}</a>.
+                </div>
                 <form class="login-form" [formGroup]="formV">
                     <div class="row">
                         <div class="col-md">
@@ -62,5 +65,4 @@
             </div>
         </div>
     </div>
-
 </div>

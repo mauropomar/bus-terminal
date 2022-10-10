@@ -13,8 +13,8 @@ export class ListaVehiculoComponent implements OnInit {
   constructor(private vehiculoServicio: VehiculoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.vehiculoServicio.getJSON().subscribe(result => {
-      this.listado = result.data;
+    this.vehiculoServicio.obtenerTodos().subscribe(result => {
+      this.listado = result;
   });
   }
 

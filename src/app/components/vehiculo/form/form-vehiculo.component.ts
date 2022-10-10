@@ -4,6 +4,7 @@ import { NgbDateAdapter, NgbDateParserFormatter, NgbCalendar, NgbDateStruct } fr
 import { CustomAdapter } from './../../../services/adaptadores/custom-adapter.service';
 import { CustomDateParserFormatter } from './../../../services/adaptadores/custom-format.service';
 import { VehiculoModel } from 'src/app/models/vehiculo/vehiculo.model';
+import { VehiculoService } from 'src/app/services/vehiculo/vehiculo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -22,10 +23,13 @@ export class FormVehiculoComponent implements OnInit {
   imagenUrlFotoRevTec = './../../../assets/images/no-image.png';
   imagenUrlFotoSoat = './../../../assets/images/no-image.png';
   minDate = { day: 9, month: 4, year: 2022 };
+  titleToast = 'Exitoso';
+  bodyToast = '';
+  showToast = false;
   model: NgbDateStruct;
 
-  constructor(private formBuilder: FormBuilder,  private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute,
+    private router: Router, private vehiculoService: VehiculoService) { }
 
   ngOnInit(): void {
     this.formV = this.formBuilder.group({
@@ -56,13 +60,36 @@ export class FormVehiculoComponent implements OnInit {
       fotoRevisionTecnica: this.imagenUrlFotoRevTec,
       fotoSoat: this.imagenUrlFotoSoat
     }
-    if(cerrar){
-      this.router.navigate(['vehiculos']);
-    }
+    this.vehiculoService.agregar(datosObj).subscribe(result => {
+      if (result) {
+        this.bodyToast = 'El vehículo fue creado satisfactoriamente.';
+        this.showToast = true;
+        setTimeout(() => {
+          this.showToast = false;
+        }, 3000)
+        this.limpiarCampos();
+        if (cerrar) {
+          this.router.navigate(['vehiculos']);
+        }
+      }
+    });
+
   }
 
-  cerrar(){
+  cerrar() {
     this.router.navigate(['vehiculos']);
+  }
+
+  limpiarCampos() {
+    this.formV.controls.placa.setValue('');
+    this.formV.controls.capacidad.setValue('');
+    this.formV.controls.tipoUnidad.setValue('');
+    this.formV.controls.proveedor.setValue('');
+    this.formV.controls.fechaVencimientoSoat.setValue('');
+    this.formV.controls.fechaVencimientoRevisionTecnica.setValue('');
+    this.imagenUrlFoto = './../../../assets/images/no-image.png';
+    this.imagenUrlFotoRevTec = './../../../assets/images/no-image.png';
+    this.imagenUrlFotoSoat = './../../../assets/images/no-image.png';
   }
 
   cargarImagenFotoVehiculo(event: string) {
