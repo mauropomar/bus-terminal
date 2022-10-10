@@ -3,14 +3,14 @@
         <h2 class="text-center">{{titulo}}</h2>
         <div class="row">
             <div class="col-md-4">
-                <app-imagen-archivo titulo="Foto de Vehiculo" [imagenUrl]="imagenUrlFoto" (cargarImagen)="cargarImagenFotoVehiculo($event)"></app-imagen-archivo>
+                <app-imagen-archivo titulo="Foto de Vehículo *" idImagen="1" [imagenUrl]="imagenUrlFoto" (cargarImagen)="cargarImagenFotoVehiculo($event)"></app-imagen-archivo>
                 <hr>
-                <app-imagen-archivo titulo="Foto de Revisión Técnica" [imagenUrl]="imagenUrlFotoRevTec" (cargarImagen)="cargarImagenFotoRevisionTecnica($event)"></app-imagen-archivo>
+                <app-imagen-archivo titulo="Foto de Revisión Técnica" idImagen="2" [imagenUrl]="imagenUrlFotoRevTec" (cargarImagen)="cargarImagenFotoRevisionTecnica($event)"></app-imagen-archivo>
                 <hr>
-                <app-imagen-archivo titulo="Foto Soap" [imagenUrl]="imagenUrlFotoSoat" (cargarImagen)="cargarImagenFotoSoat($event)"></app-imagen-archivo>
+                <app-imagen-archivo titulo="Foto Soap" idImagen="3" [imagenUrl]="imagenUrlFotoSoat" (cargarImagen)="cargarImagenFotoSoat($event)"></app-imagen-archivo>
             </div>
             <div class="col-md-8">
-                <form class="login-form" [formGroup]="formV" (ngSubmit)="onSubmit()">
+                <form class="login-form" [formGroup]="formV">
                     <div class="row">
                         <div class="col-md">
                             <div class="form-group">
@@ -49,15 +49,15 @@
                     <div class="form-group">
                         <label class="text-uppercase">Fecha de Vencimiento de Revisión Técnica</label>
                         <div class="input-group">
-                            <input class="form-control" formControlName="fechaVencimientoRevisionTecnica" ngbDatepicker #d="ngbDatepicker" />
+                            <input class="form-control" formControlName="fechaVencimientoRevisionTecnica" ngbDatepicker #d1="ngbDatepicker" />
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="d.toggle()"></button>
+                                <button class="btn btn-outline-secondary fa fa-calendar" type="button" (click)="d1.toggle()"></button>
                             </div>
                         </div>
                     </div>
-                    <button [disabled]="!formV.valid" type="submit" class="btn btn-danger float-right">Cancelar</button>
-                    <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right">Aceptar</button>
-                    <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right">Agregar</button>
+                    <button class="btn btn-danger float-right btn-config" (click)="cerrar()">Cancelar</button>
+                    <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right btn-config" (click)="guardarCambios(true)">Aceptar</button>
+                    <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right btn-config" (click)="guardarCambios(false)">Agregar</button>
                 </form>
             </div>
         </div>

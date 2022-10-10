@@ -1,0 +1,15 @@
+.container {
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+    width: 200px;
+}
+
+img {
+    border-radius: 50%;
+    margin: 5px;
+    max-width: 200px;
+    max-height: 200px;
+}

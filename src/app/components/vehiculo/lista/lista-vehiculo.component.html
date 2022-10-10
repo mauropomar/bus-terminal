@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Listado de Vehiculos</h2>
-    <button class="button-nuevo" type="button">Nuevo Vehículo</button>
+    <button class="button-nuevo" type="button" (click)="mostrarNuevoVehiculo()">Nuevo Vehículo</button>
     <div class="row">
         <div class="col-12">
             <table class="table table-bordered">
@@ -20,7 +20,7 @@
                         <td>{{fila.placa}}</td>
                         <td class="align-right">{{fila.capacidad}} lts</td>
                         <td>{{fila.tipoUnidad}}</td>
-                        <td class="align-center">{{fila.fechaVencimientoSoat | date: 'dd/MM/yyyy'}}</td>
+                        <td class="align-center">{{fila.fechaVencimientoSoap | date: 'dd/MM/yyyy'}}</td>
                         <td class="align-center">
                             <button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>
                             <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

@@ -11,7 +11,7 @@ h2 {
     margin-bottom: 40px;
 }
 
-button[type="submit"] {
+.btn-config {
     margin-left: 10px;
 }
 

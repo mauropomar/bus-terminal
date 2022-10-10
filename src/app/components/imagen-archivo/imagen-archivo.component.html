@@ -1,0 +1,6 @@
+<div class="container">
+    <span class="title">{{titulo}}</span><br>
+    <img src="{{imagenUrl}}" width="200" height="200"><br>
+    <label for={{idImagen}} class="btn btn-primary">Seleccionar</label>
+    <input type="file" id={{idImagen}} (change)="onChange($event)" accept="image/*" style="display:none" />
+</div>
