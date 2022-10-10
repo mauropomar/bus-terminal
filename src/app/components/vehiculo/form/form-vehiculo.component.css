@@ -14,3 +14,10 @@ h2 {
 button[type="submit"] {
     margin-left: 10px;
 }
+
+hr {
+    border: 0;
+    border-top: 2px solid #999;
+    border-bottom: 2px solid #333;
+    height: 0;
+}
