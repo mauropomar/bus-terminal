@@ -17,7 +17,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FormVehiculoComponent implements OnInit {
   formV: any;
-  titulo = 'Crear un Vehículo';
+  titulo = 'Crear un vehículo';
   imagenUrlFoto = './../../../assets/images/no-image.png';
   imagenUrlFotoRevTec = './../../../assets/images/no-image.png';
   imagenUrlFotoSoat = './../../../assets/images/no-image.png';
