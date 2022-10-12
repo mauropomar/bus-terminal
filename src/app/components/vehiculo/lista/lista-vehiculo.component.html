@@ -2,6 +2,9 @@
     <h2>Listado de Vehiculos</h2>
     <button class="button-nuevo" type="button" (click)="mostrarNuevoVehiculo()">Nuevo Vehículo</button>
     <div class="row">
+        <div *ngIf="showToast" class="alert alert-dismissible alert-success">
+            <strong>Exitoso!!!</strong><br><a>El vehículo ha sido borrado satisfactoriamente</a>.
+        </div>
         <div class="col-12">
             <table class="table table-bordered">
                 <thead>
@@ -10,6 +13,7 @@
                         <th scope="col">Placa</th>
                         <th scope="col">Capacidad</th>
                         <th scope="col">Tipo de Unidad</th>
+                        <th scope="col">Proveedor</th>
                         <th scope="col">Fecha Vencimiento Soat</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -20,10 +24,11 @@
                         <td>{{fila.placa}}</td>
                         <td class="align-right">{{fila.capacidad}} lts</td>
                         <td>{{fila.tipoUnidad}}</td>
+                        <td>{{fila.proveedor}}</td>
                         <td class="align-center">{{fila.fechaVencimientoSoat | date: 'dd/MM/yyyy'}}</td>
                         <td class="align-center">
                             <button type="button" class="btn btn-primary" (click)="mostrarEditar(fila)"><i class="fa fa-edit"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                            <button type="button" class="btn btn-danger" (click)="eliminarVehiculo(fila)"><i class="fa fa-trash-o"></i></button>
                         </td>
                     </tr>
                 </tbody>

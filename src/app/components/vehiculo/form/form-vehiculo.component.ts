@@ -73,9 +73,9 @@ export class FormVehiculoComponent implements OnInit, AfterViewInit {
     const fechaVencRevTec = this.formatearFecha(elemento.fechaVencimientoRevisionTecnica);
     this.formV.controls.fechaVencimientoRevisionTecnica.setValue(fechaVencRevTec);
     this.formV.controls.fechaVencimientoSoat.setValue(fechaVencSoat);
-    this.imagenUrlFoto = elemento.foto;
-    this.imagenUrlFotoSoat = elemento.fotoSoat;
-    this.imagenUrlFotoRevTec = elemento.fotoRevisionTecnica;
+    this.imagenUrlFoto = elemento.foto ?elemento.foto: './../../../assets/images/no-image.png';
+    this.imagenUrlFotoSoat = elemento.fotoSoat? elemento.fotoSoat: './../../../assets/images/no-image.png';
+    this.imagenUrlFotoRevTec = elemento.fotoRevisionTecnica? elemento.fotoRevisionTecnica: './../../../assets/images/no-image.png';;
   }
 
   guardarCambios(cerrar: boolean) {

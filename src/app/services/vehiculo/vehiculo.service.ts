@@ -28,4 +28,9 @@ export class VehiculoService {
     const body = JSON.stringify(vehiculo);
     return this.http.put(`${environment.apiUrl}/vehiculos/${idVehiculo}`, body, { 'headers': headers });
   }
+
+  public eliminar(idVehiculo: string): Observable<any> {
+    const headers = { 'content-type': 'application/json' }
+    return this.http.delete(`${environment.apiUrl}/vehiculos/${idVehiculo}`, { 'headers': headers });
+  }
 }

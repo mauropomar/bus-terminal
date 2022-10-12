@@ -25,6 +25,7 @@ import { DefaultImagePipe } from "./../../pipes/default-image.pipe";
     FormsModule,
     ReactiveFormsModule,
     NgbModule
-  ]
+  ],
+  providers: [],
 })
 export class VehiculoModule { }
