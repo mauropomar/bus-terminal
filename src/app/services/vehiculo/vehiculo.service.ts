@@ -22,4 +22,10 @@ export class VehiculoService {
     const body = JSON.stringify(vehiculo);
     return this.http.post(`${environment.apiUrl}/vehiculos`, body, { 'headers': headers })
   }
+
+  public actualizar(idVehiculo: string, vehiculo: VehiculoModel): Observable<any> {
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(vehiculo);
+    return this.http.put(`${environment.apiUrl}/vehiculos/${idVehiculo}`, body, { 'headers': headers });
+  }
 }

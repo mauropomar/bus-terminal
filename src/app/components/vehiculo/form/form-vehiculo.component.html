@@ -60,7 +60,7 @@
                     </div>
                     <button class="btn btn-danger float-right btn-config" (click)="cerrar()">Cancelar</button>
                     <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right btn-config" (click)="guardarCambios(true)">Aceptar</button>
-                    <button [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right btn-config" (click)="guardarCambios(false)">Agregar</button>
+                    <button *ngIf="idVehiculo === ''" [disabled]="!formV.valid" type="submit" class="btn btn-primary float-right btn-config" (click)="guardarCambios(false)">Agregar</button>
                 </form>
             </div>
         </div>

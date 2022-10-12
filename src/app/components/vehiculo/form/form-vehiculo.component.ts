@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { NgbDateAdapter, NgbDateParserFormatter, NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { FormBuilder, Validators, } from '@angular/forms';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CustomAdapter } from './../../../services/adaptadores/custom-adapter.service';
 import { CustomDateParserFormatter } from './../../../services/adaptadores/custom-format.service';
 import { VehiculoModel } from 'src/app/models/vehiculo/vehiculo.model';
@@ -16,7 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter }
   ]
 })
-export class FormVehiculoComponent implements OnInit {
+export class FormVehiculoComponent implements OnInit, AfterViewInit {
   formV: any;
   titulo = 'Crear un vehículo';
   imagenUrlFoto = './../../../assets/images/no-image.png';
@@ -26,10 +26,15 @@ export class FormVehiculoComponent implements OnInit {
   titleToast = 'Exitoso';
   bodyToast = '';
   showToast = false;
+  idVehiculo = '';
   model: NgbDateStruct;
 
-  constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute,
-    private router: Router, private vehiculoService: VehiculoService) { }
+  constructor(private formBuilder: FormBuilder, private activateRoute: ActivatedRoute,
+    private router: Router, private vehiculoService: VehiculoService) {
+    this.activateRoute.params.subscribe((params: any) => {
+      this.idVehiculo = params.id ? params.id : '';
+    });
+  }
 
   ngOnInit(): void {
     this.formV = this.formBuilder.group({
@@ -45,7 +50,35 @@ export class FormVehiculoComponent implements OnInit {
     });
   }
 
-  guardarCambios(cerrar: any) {
+  ngAfterViewInit(): void {
+    if (this.idVehiculo !== '') {
+      this.obtener(this.idVehiculo);
+    }
+  }
+
+  obtener(idVehiculo: string) {
+    this.titulo = 'Editar vehículo';
+    this.vehiculoService.obtenerTodos().subscribe(
+      resultado => this.cargarInformacion(idVehiculo, resultado)
+    );
+  }
+
+  cargarInformacion(idVehiculo: string, elementos: VehiculoModel[]): void {
+    let elemento: any = elementos.find(x => x.id === idVehiculo);
+    this.formV.controls.placa.setValue(elemento.placa);
+    this.formV.controls.capacidad.setValue(elemento.capacidad);
+    this.formV.controls.tipoUnidad.setValue(elemento.tipoUnidad);
+    this.formV.controls.proveedor.setValue(elemento.proveedor);
+    const fechaVencSoat = this.formatearFecha(elemento.fechaVencimientoSoat);
+    const fechaVencRevTec = this.formatearFecha(elemento.fechaVencimientoRevisionTecnica);
+    this.formV.controls.fechaVencimientoRevisionTecnica.setValue(fechaVencRevTec);
+    this.formV.controls.fechaVencimientoSoat.setValue(fechaVencSoat);
+    this.imagenUrlFoto = elemento.foto;
+    this.imagenUrlFotoSoat = elemento.fotoSoat;
+    this.imagenUrlFotoRevTec = elemento.fotoRevisionTecnica;
+  }
+
+  guardarCambios(cerrar: boolean) {
     if (this.formV.invalid) {
       return;
     }
@@ -60,20 +93,41 @@ export class FormVehiculoComponent implements OnInit {
       fotoRevisionTecnica: this.imagenUrlFotoRevTec,
       fotoSoat: this.imagenUrlFotoSoat
     }
-    this.vehiculoService.agregar(datosObj).subscribe(result => {
-      if (result) {
-        this.bodyToast = 'El vehículo fue creado satisfactoriamente.';
+    if (this.idVehiculo === '') {
+      this.agregarVehiculo(datosObj, cerrar);
+    } else {
+      this.actualizarVehiculo(this.idVehiculo, datosObj);
+    }
+  }
+
+  agregarVehiculo(datos: VehiculoModel, cerrar: boolean) {
+    this.vehiculoService.agregar(datos).subscribe((resultado) => {
+      if (resultado) {
+        this.bodyToast = 'Los cambios fueron realizados satisfactoriamente.';
         this.showToast = true;
         setTimeout(() => {
           this.showToast = false;
+          this.limpiarCampos();
+          if (cerrar) {
+            this.router.navigate(['vehiculos']);
+          }
         }, 3000)
-        this.limpiarCampos();
-        if (cerrar) {
-          this.router.navigate(['vehiculos']);
-        }
-      }
-    });
 
+      }
+    })
+  }
+
+  actualizarVehiculo(idVehiculo: string, datos: VehiculoModel) {
+    this.vehiculoService.actualizar(idVehiculo, datos).subscribe((resultado) => {
+      if (resultado) {
+        this.bodyToast = 'Los cambios fueron realizados satisfactoriamente.';
+        this.showToast = true;
+        setTimeout(() => {
+          this.showToast = false;
+          this.router.navigate(['vehiculos']);
+        }, 3000)
+      }
+    })
   }
 
   cerrar() {
@@ -90,6 +144,11 @@ export class FormVehiculoComponent implements OnInit {
     this.imagenUrlFoto = './../../../assets/images/no-image.png';
     this.imagenUrlFotoRevTec = './../../../assets/images/no-image.png';
     this.imagenUrlFotoSoat = './../../../assets/images/no-image.png';
+  }
+
+  formatearFecha(fecha: string): string {
+    const fechaCadena = fecha.split('-');
+    return `${fechaCadena[0]}-${fechaCadena[1]}-${fechaCadena[2]}`
   }
 
   cargarImagenFotoVehiculo(event: string) {

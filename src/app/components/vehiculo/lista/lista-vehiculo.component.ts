@@ -22,4 +22,8 @@ export class ListaVehiculoComponent implements OnInit {
     this.router.navigate(['vehiculos/nuevo']);
   }
 
+  mostrarEditar(item: VehiculoModel){
+    this.router.navigate(['vehiculos/editar', item.id]);
+  }
+
 }
